@@ -17,6 +17,20 @@ export default function RouteNavigator({ routes }: RouteNavigatorProps) {
 
   const naturalRoutes = useMemo(() => {
     const toLabel = (path: string) => {
+      const capitalizeSegment = (segment: string) => {
+        const dotIndex = segment.indexOf(".");
+
+        if (dotIndex >= 0) {
+          const prefix = segment.slice(0, dotIndex + 1);
+          const suffix = segment.slice(dotIndex + 1);
+
+          if (!suffix) return prefix;
+          return `${prefix}${suffix.charAt(0).toUpperCase()}${suffix.slice(1)}`;
+        }
+
+        return `${segment.charAt(0).toUpperCase()}${segment.slice(1)}`;
+      };
+
       const segments = path
         .split("/")
         .filter(Boolean)
@@ -27,7 +41,7 @@ export default function RouteNavigator({ routes }: RouteNavigatorProps) {
             .trim(),
         )
         .filter(Boolean)
-        .map((segment) => segment.charAt(0).toUpperCase() + segment.slice(1));
+        .map(capitalizeSegment);
 
       return segments.join(" / ");
     };
