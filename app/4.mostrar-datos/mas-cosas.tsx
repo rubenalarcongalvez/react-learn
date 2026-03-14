@@ -1,0 +1,1 @@
+export const otraVariable: string = 'Holaa!';
