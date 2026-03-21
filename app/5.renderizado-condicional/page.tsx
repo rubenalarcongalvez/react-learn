@@ -14,7 +14,7 @@ function ComponenteCorto() {
 }
 
 export default function RenderizadoCondicional() {
-  // Podemos asignar componentes a variables
+  // IMPORTANT: Podemos asignar componentes a variables
   const estaLogueado = false; // Solo es un ejemplo
   let componenteEnVariable;
 
