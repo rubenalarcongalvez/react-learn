@@ -23,18 +23,20 @@ export default function ActualizarPantallaUseState() {
     setContadorReclamado(vecesReclamado + 1); // IMPORTANT: No nos vale el ++
   }
 
+  const vecesReclamarBilleteParaPegarle: number = 3;
+
   let diLaFrase;
   if (reclamarBilleteActivado) {
     diLaFrase = <>
       <section className="flex gap-2">
         <button className="text-5xl" onClick={() => accionReclamarBillete('¿Nos lo devuelve?')}>Reclamar el billete robado</button>
-        <span>Veces reclamado el billete: <span style={{color: vecesReclamado >= 5 ? 'red' : 'black'}}>{vecesReclamado}</span></span>
-        {vecesReclamado < 5 ? <span>Prueba a pedírselo 5 veces</span> : <span/>}
+        <span>Veces reclamado el billete: <span style={{color: vecesReclamado >= vecesReclamarBilleteParaPegarle ? 'red' : 'black'}}>{vecesReclamado}</span></span>
+        {vecesReclamado < vecesReclamarBilleteParaPegarle ? <span>Prueba a pedírselo {vecesReclamarBilleteParaPegarle} veces</span> : <span/>}
       </section>
       <hr />
       <section className="flex gap-2">
         {/* IMPORTANT: Dentro de un componente, los useState son individuales. A no ser que pongamos el useState a nivel global en un componente padre o a nivel de archivo */}
-        {vecesReclamado >= 5 && (
+        {vecesReclamado >= vecesReclamarBilleteParaPegarle && (
           <>
             <Pegarle accion="Gancho"/>
             <Pegarle accion="Patada"/>
